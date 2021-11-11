@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="hotelsystemPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>hn.ceutec.vanguardia.entidades.Calendariohabitaciones</class>
+    <class>hn.ceutec.vanguardia.entidades.Estadosproductos</class>
+    <class>hn.ceutec.vanguardia.entidades.Reservas</class>
+    <class>hn.ceutec.vanguardia.entidades.Estadohabitacion</class>
+    <class>hn.ceutec.vanguardia.entidades.Personas</class>
+    <class>hn.ceutec.vanguardia.entidades.Habitaciones</class>
+    <class>hn.ceutec.vanguardia.entidades.Tipohabitacion</class>
+    <class>hn.ceutec.vanguardia.entidades.Paises</class>
+    <class>hn.ceutec.vanguardia.entidades.Presentaciones</class>
+    <class>hn.ceutec.vanguardia.entidades.Productos</class>
+    <class>hn.ceutec.vanguardia.entidades.Movimientocajadetalle</class>
+    <class>hn.ceutec.vanguardia.entidades.Tipodocumento</class>
+    <class>hn.ceutec.vanguardia.entidades.InfoHotel</class>
+    <class>hn.ceutec.vanguardia.entidades.Estadoreserva</class>
+    <class>hn.ceutec.vanguardia.entidades.Promociones</class>
+    <class>hn.ceutec.vanguardia.entidades.Serviciosreservas</class>
+    <class>hn.ceutec.vanguardia.entidades.Marcas</class>
+    <class>hn.ceutec.vanguardia.entidades.Facturareserva</class>
+    <class>hn.ceutec.vanguardia.entidades.Tipomovimientocaja</class>
+    <class>hn.ceutec.vanguardia.entidades.Movimientocaja</class>
+    <class>hn.ceutec.vanguardia.entidades.Proveedores</class>
+    <class>hn.ceutec.vanguardia.entidades.Movimientostc</class>
+    <class>hn.ceutec.vanguardia.entidades.Descuentos</class>
+    <class>hn.ceutec.vanguardia.entidades.Servicios</class>
+    <class>hn.ceutec.vanguardia.entidades.Tipousuario</class>
+    <class>hn.ceutec.vanguardia.entidades.Zonas</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+      <property name="javax.persistence.jdbc.user" value="VANGUARDIA"/>
+      <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+      <property name="javax.persistence.jdbc.password" value="0000"/>
+    </properties>
+  </persistence-unit>
+</persistence>

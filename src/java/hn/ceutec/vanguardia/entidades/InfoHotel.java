@@ -13,6 +13,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -44,6 +45,19 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "InfoHotel.findByA", query = "SELECT i FROM InfoHotel i WHERE i.a = :a")})
 public class InfoHotel implements Serializable {
 
+    @Column(name = "CAI")
+    private String cai;
+
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "LATITUD")
+    private BigDecimal latitud;
+    @Column(name = "LONJITUD")
+    private BigDecimal lonjitud;
+
+    @Lob
+    @Column(name = "POLITICAS")
+    private String politicas;
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -59,10 +73,6 @@ public class InfoHotel implements Serializable {
     @Column(name = "FECHACREACION")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechacreacion;
-    @Column(name = "LATITUD")
-    private Double latitud;
-    @Column(name = "LONJITUD")
-    private Double lonjitud;
     @Column(name = "TELEFONO")
     private String telefono;
     @Column(name = "EMAIL")
@@ -123,21 +133,6 @@ public class InfoHotel implements Serializable {
         this.fechacreacion = fechacreacion;
     }
 
-    public Double getLatitud() {
-        return latitud;
-    }
-
-    public void setLatitud(Double latitud) {
-        this.latitud = latitud;
-    }
-
-    public Double getLonjitud() {
-        return lonjitud;
-    }
-
-    public void setLonjitud(Double lonjitud) {
-        this.lonjitud = lonjitud;
-    }
 
     public String getTelefono() {
         return telefono;
@@ -210,6 +205,38 @@ public class InfoHotel implements Serializable {
     @Override
     public String toString() {
         return "hn.ceutec.vanguardia.entidades.InfoHotel[ id=" + id + " ]";
+    }
+
+    public String getPoliticas() {
+        return politicas;
+    }
+
+    public void setPoliticas(String politicas) {
+        this.politicas = politicas;
+    }
+
+    public BigDecimal getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(BigDecimal latitud) {
+        this.latitud = latitud;
+    }
+
+    public BigDecimal getLonjitud() {
+        return lonjitud;
+    }
+
+    public void setLonjitud(BigDecimal lonjitud) {
+        this.lonjitud = lonjitud;
+    }
+
+    public String getCai() {
+        return cai;
+    }
+
+    public void setCai(String cai) {
+        this.cai = cai;
     }
     
 }

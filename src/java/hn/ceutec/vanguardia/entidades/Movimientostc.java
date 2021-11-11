@@ -38,6 +38,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Movimientostc.findByEstado", query = "SELECT m FROM Movimientostc m WHERE m.estado = :estado")})
 public class Movimientostc implements Serializable {
 
+    @Column(name = "CONFIRMACION")
+    private BigInteger confirmacion;
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -135,6 +138,14 @@ public class Movimientostc implements Serializable {
     @Override
     public String toString() {
         return "hn.ceutec.vanguardia.entidades.Movimientostc[ id=" + id + " ]";
+    }
+
+    public BigInteger getConfirmacion() {
+        return confirmacion;
+    }
+
+    public void setConfirmacion(BigInteger confirmacion) {
+        this.confirmacion = confirmacion;
     }
     
 }
