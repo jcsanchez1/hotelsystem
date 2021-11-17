@@ -38,7 +38,7 @@
     info.setEmail(email);
     info.setDireccion(direccion);
     info.setPoliticas(politicas);
-
+    session.setAttribute("s_nombre_hotel", info.getNombre());
 %>
 
 <!DOCTYPE html>
@@ -75,7 +75,7 @@
 
                 //recuperar ubicacion donde hago click
                 var iw = new google.maps.InfoWindow(
-                        {content: '<%= info.getNombre()%> <br> <%= info.getDireccion() %>!',
+                        {content: '<%= info.getNombre()%> <br> <%= info.getDireccion()%>!',
                             position: ubicacion});
                 iw.open(map);
                 // configurar evento click sobre el mapa
@@ -153,25 +153,20 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#!">Sign Up</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Log In</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Registrarse.jsp">Registrarse</a></li>
+                        <li class="nav-item"><a class="nav-link" href="login.jsp">Ingresar</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
         <!-- Header-->
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-            </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="img/slide1.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Some representative placeholder content for the first slide.</p>
+                    <div class="carousel-caption d-none d-md-block" style="margin-bottom: 300px;">
+                        <h3><strong><%=info.getNombre()%></strong></h3>
+                        <p>Comodidad, atención y diversión al alcance de todos.</p>
                     </div>
                 </div>
                 <!--  <div class="carousel-item">
@@ -244,7 +239,7 @@
             </div>
         </section>
         <!-- Content section 3-->
-        <section>
+        <section id="politicas">
             <div class="container px-5">
                 <div class="row gx-5 align-items-center">
                     <div class="col-lg-6 order-lg-2">
@@ -264,32 +259,29 @@
 
             <div class="container px-5">
                 <div class="row gx-5 align-items-center">
-                    <div class="col-2">
+                    <div class="col-lg-6 order-lg-2">
+                        <div id="mapa" style="width: 100%; height: 450px;"></div>
                     </div>
-                    <div class="col-8">
-                        <div id="mapa" style="width: 100%; height: 500px;"></div>
-                    </div>
-                    <div class="col-2">
+                    <div class="col-lg-6 order-lg-1">
+                        <div class="row">
+                            <div class="col-3">
+                                <p><strong>Telefono:</strong></p>
+                                <p><strong>Email:</strong></p>
+                                <p><strong>Direccion:</strong></p>
+                            </div>                    
+                            <div class="col-9">
+                                <p><a href="tel:<%= info.getTelefono()%>"><%= info.getTelefono()%></a></p>
+                                <p><a href="mailto:<%= info.getEmail()%>"><%= info.getEmail()%></a></p>
+                                <p><%= info.getDireccion()%></p>                    
+                            </div> 
+                        </div>
                     </div>                    
                 </div>
             </div>
         </section>                        
         <!-- Footer-->
         <footer class="py-5 bg-black">
-            <div class="row">
-                <div class="col-1">
-
-                </div>                    
-                <div class="col-4">
-                    <p><strong>Telefono:</strong><%= info.getTelefono()%></p>
-                    <p><strong>Email:</strong><%= info.getEmail()%></p>
-                    <p><strong>Direccion:</strong><%= info.getDireccion()%></p>                    
-                </div>
-                <div class="col-7">
-
-                </div>    
-            </div>
-            <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; <%= info.getNombre()%> Your Website 2021</p></div>
+            <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; <%= info.getNombre()%> 2021</p></div>
         </footer>     
         <script src="js/bootstrap.bundle.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
