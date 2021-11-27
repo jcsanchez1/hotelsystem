@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link href="../css/metro-all.css?ver=@@b-version" rel="stylesheet" type="text/css"/>
+    <jsp:include page="encabezado.jsp"/>
     <title><% out.print(session.getAttribute("s_nombre_hotel").toString()); %> | Sistema Empleados</title>
 
 </head>
@@ -12,7 +10,9 @@
     <div class="example">
         <div class="window">
             <div class="window-caption">
-                <span class="icon mif-windows"></span>
+                <span class="icon ">
+                    <img src="../img/logo.png" alt=""/>
+                </span>
                 <span class="title"><% out.print(session.getAttribute("s_nombre_hotel").toString()); %> | Ericak Ramirez</span>
                 <div class="buttons">
                     <span class="btn-min"></span>
@@ -184,6 +184,7 @@
                             <span class="title">ribbon controls</span>
                         </div>
                     </div>
+                    
                 </div>
             </nav>
             <div class="window-content p-2">

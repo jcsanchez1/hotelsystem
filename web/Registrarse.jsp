@@ -1,18 +1,24 @@
+<%@page import="java.math.BigDecimal"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="hn.ceutec.vanguardia.configuracion.Dba"%>
+<%@page import="hn.ceutec.vanguardia.entidades.Paises"%>
+<%@page import="hn.ceutec.vanguardia.entidades.Tipodocumento"%>
+<%@page import="hn.ceutec.vanguardia.entidades.Personas"%>
+<%
+    int id_d = 0, id_p = 0;
+    String nombre_p = "", iso3 = "", codigo = "", tipod = "";
+    Paises v_pais = new Paises();
+    Tipodocumento v_td = new Tipodocumento();
+
+    Dba db = new Dba(); //en la clase dba poner el user y pass
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title><% out.print(session.getAttribute("s_nombre_hotel").toString()); %> | Registro usuarios</title>
-
-        <!-- Google Font: Source Sans Pro -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-        <!-- Font Awesome -->
-        <link href="plugins/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"/>
-        <!-- icheck bootstrap -->
-        <link href="plugins/icheck-bootstrap/icheck-bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <!-- Theme style -->
-        <link href="css/adminlte.min.css" rel="stylesheet" type="text/css"/>
+        <jsp:include page="cabecera.jsp"/>
     </head>
     <body class="hold-transition register-page">
         <div class="register-box">
@@ -64,11 +70,23 @@
                                 <label for="pais" class="col-form-label">Pais</label> 
                             </div>
                             <div class="col-4">
+                                <%
+                                    db.Conectar();
+                                    try {
+                                        db.query.execute("SELECT * FROM VANGUARDIA.PAISES ");
+                                        ResultSet rs = db.query.getResultSet();
+                                %>                                
                                 <select id="pais" name="pais" class="custom-select">
-                                    <option value="1">Honduras</option>
-                                    <option value="2">El salvador</option>
-                                    <option value="3">Guatemala</option>
+                                    <% while (rs.next()) {
+                                            out.print("<option value=" + rs.getInt(1) + ">" + rs.getString(2) + "</option>");
+                                        } %>
                                 </select>
+                                <%
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                    db.desconectar();
+                                %>                                
                             </div>
                         </div>
                         <div class="form-group row">
@@ -76,11 +94,23 @@
                                 <label for="tipodocumento" class="col-form-label">Documento</label> 
                             </div>
                             <div class="col-4">
+                                <%
+                                    db.Conectar();
+                                    try {
+                                        db.query.execute("SELECT * FROM VANGUARDIA.TIPODOCUMENTO ");
+                                        ResultSet rs = db.query.getResultSet();
+                                %>
                                 <select id="tipodocumento" name="tipodocumento" class="custom-select">
-                                    <option value="1">DNI</option>
-                                    <option value="2">Pasaporte</option>
-                                    <option value=""></option>
+                                    <% while (rs.next()) {
+                                            out.print("<option value=" + rs.getInt(1) + ">" + rs.getString(2) + "</option>");
+                                        } %>
                                 </select>
+                                <%
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                    db.desconectar();
+                                %>
                             </div>
                             <div class="col-2">
                                 <label for="identificacion" class=" col-form-label"># Identificacion</label>   
@@ -92,17 +122,19 @@
                         <div class="form-group row">
                             <div class="col-4">
                                 <div class="icheck-primary">
-                                    <input type="checkbox" id="agreeTerms" name="terms" value="agree" required="required">
+                                    <input type="checkbox"  id="agreeTerms" name="terms" value="agree" required="required">
                                     <label for="agreeTerms">
                                         Acepto los <a href="index.jsp#politicas">terminos</a>
                                     </label>
                                 </div>
                             </div>                            
                             <div class="col-4">
-                                <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
+                                <button type="submit" onclick="generatePasswordRand(8);" class="btn btn-primary btn-block">Registrarse</button>
                             </div><br/>
                         </div> 
                         <a href="login.jsp" class="text-center">Tengo un usuario</a>
+                        <input type="hidden" name="generado" id="generado">
+                        <input type="hidden" name="md5pass" id="md5pass">
                     </form>
                 </div>
             </div>
@@ -118,5 +150,36 @@
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
 <!-- AdminLTE App -->
 <script src="js/adminlte.min.js" type="text/javascript"></script>
+<script src="js/encriptar/md5.js" type="text/javascript"></script>
+<script>
+                                    function generatePasswordRand(length, type) {
+                                        switch (type) {
+                                            case 'num':
+                                                characters = "0123456789";
+                                                break;
+                                            case 'alf':
+                                                characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                                                break;
+                                            case 'rand':
+                                                //FOR ?
+                                                break;
+                                            default:
+                                                characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                                                break;
+                                        }
+                                        var pass = "";
+                                        for (i = 0; i < length; i++) {
+                                            if (type == 'rand') {
+                                                pass += String.fromCharCode((Math.floor((Math.random() * 100)) % 94) + 33);
+                                            } else {
+                                                pass += characters.charAt(Math.floor(Math.random() * characters.length));
+                                            }
+                                        }
+                                        document.getElementById("generado").value = pass;
+                                        document.getElementById("md5pass").value = hex_md5(pass);
+                                        console.log(document.getElementById("md5pass").value);
+                                        return pass;
+                                    }
+</script>
 </body>
 </html>

@@ -1,25 +1,18 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title><% out.print(session.getAttribute("s_nombre_hotel").toString());%> | Ingresar</title>
-
-        <!-- Google Font: Source Sans Pro -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-        <!-- Font Awesome -->
-        <link href="plugins/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"/>
-        <!-- icheck bootstrap -->
-        <link href="plugins/icheck-bootstrap/icheck-bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <!-- Theme style -->
-        <link href="css/adminlte.min.css" rel="stylesheet" type="text/css"/>
+        <jsp:include page="cabecera.jsp"/>
     </head>
     <body class="hold-transition login-page">
         <div class="login-box">
             <!-- /.login-logo -->
             <div class="card card-outline card-primary">
                 <div class="card-header text-center">
-                    <a href="index.jsp" class="h1"><b><% out.print(session.getAttribute("s_nombre_hotel").toString()); %></b></a>
+                    <a href="index.jsp" class="h1"><b><% out.print(session.getAttribute("s_nombre_hotel").toString());%></b></a>
                 </div>
                 <div class="card-body">
                     <p class="login-box-msg">Ingrese su datos para ver su cuenta</p>
@@ -61,7 +54,7 @@
                     </form>
 
                     <p class="mb-1">
-                        <a href="forgot-password.html">Olvide mi contraseña</a>
+                        <a href="forgot-password.html">Olvide mi contraseÃ±a</a>
                     </p>
                     <p class="mb-0">
                         <a href="Registrarse.jsp" class="text-center">Registrar nuevo cliente</a>

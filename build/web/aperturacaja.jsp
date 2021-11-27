@@ -6,15 +6,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title><% out.print(session.getAttribute("s_nombre_hotel").toString()); %> | Registro usuarios</title>
-
-        <!-- Google Font: Source Sans Pro -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-        <!-- Font Awesome -->
-        <link href="plugins/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"/>
-        <!-- icheck bootstrap -->
-        <link href="plugins/icheck-bootstrap/icheck-bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <!-- Theme style -->
-        <link href="css/adminlte.min.css" rel="stylesheet" type="text/css"/>
+        <jsp:include page="cabecera.jsp"/>
     </head>
     <body class="hold-transition register-page">
         <div class="register-box">
@@ -46,12 +38,12 @@
                                 <label for="fecha" class="col-form-label">Fecha</label> 
                             </div>
                             <div class="col-4">
-                            <input id="fecha" name="fecha" type="date" class="form-control" required="required" value="<%
-                        Date dNow2 = new Date();
-                        SimpleDateFormat ft2
-                                = new SimpleDateFormat("dd-MM-yyyy");
-                        out.print(ft.format(dNow));
-                        %></p>">
+                                <input id="fecha" name="fecha" type="date" class="form-control" required="required" value="<%
+                                    Date dNow2 = new Date();
+                                    SimpleDateFormat ft2
+                                            = new SimpleDateFormat("dd-MM-yyyy");
+                                    out.print(ft.format(dNow));
+                                       %></p>">
                             </div>
                             <div class="col-2">
                                 <label for="concepto" class=" col-form-label">Usuario</label>   

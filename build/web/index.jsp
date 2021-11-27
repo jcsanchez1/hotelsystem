@@ -40,7 +40,7 @@
     info.setPoliticas(politicas);
     session.setAttribute("s_nombre_hotel", info.getNombre());
 %>
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -49,21 +49,13 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title><%=info.getNombre()%></title>
-        <link rel="icon" type="image/x-icon" href="favicon.ico" />
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-        <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
+        <jsp:include page="/cabeceraindex.jsp"/>
         <script type="text/javascript">
             function mostrar_mapa(centinela) {
-                //Ubicación inicial del mapa.
+                
+                //UbicaciÃ³n inicial del mapa.
                 var ubicacion = new google.maps.LatLng(<%= info.getLatitud()%>,<%= info.getLonjitud()%>); //Latitud y Longitud
-                //Parámetros Iniciales
+                //ParÃ¡metros Iniciales
                 var opciones = {zoom: 17, //acercamiento
                     center: ubicacion,
                     mapTypeId: google.maps.MapTypeId.ROADMAP //Las posibles opciones son ROADMAP/SATELLITE/HYBRID/TERRA                    
@@ -90,15 +82,15 @@
                 if (centinela == 1) {
                     //Colocar una marca sobre el Mapa
                     mi_ubicacion = new google.maps.Marker({
-                        position: new google.maps.LatLng(14.104173, -87.186145), //Posición de la marca
-                        icon: 'persona.jpg', //Imagen que aparecerá en la marca, debe estar en el server
-                        map: map, //Mapa donde estará la marca
-                        title: 'Osman Mejía' //Título all hacer un mouseover
+                        position: new google.maps.LatLng(14.104173, -87.186145), //PosiciÃ³n de la marca
+                        icon: 'persona.jpg', //Imagen que aparecerÃ¡ en la marca, debe estar en el server
+                        map: map, //Mapa donde estarÃ¡ la marca
+                        title: 'Osman MejÃ­a' //TÃ­tulo all hacer un mouseover
                     });
 
-                    //Mostrar Información al hacer click en la marca
+                    //Mostrar InformaciÃ³n al hacer click en la marca
                     var infowindow = new google.maps.InfoWindow({
-                        content: 'Elaborado Por: Osman Mejía<br/>Clase: DAW<br/>Tipo: Ejemplo'
+                        content: 'Elaborado Por: Osman MejÃ­a<br/>Clase: DAW<br/>Tipo: Ejemplo'
                     });
 
                     google.maps.event.addListener(mi_ubicacion, 'click', function () {
@@ -110,9 +102,9 @@
             }
 
             function mostrar_triangulo() {
-                //Ubicación inicial del mapa
+                //UbicaciÃ³n inicial del mapa
                 var ubicacion = new google.maps.LatLng(24.886436490187712, -70.2685546875);
-                //Parámetros iniciales
+                //ParÃ¡metros iniciales
                 var opciones = {zoom: 5,
                     center: ubicacion,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -127,7 +119,7 @@
                     new google.maps.LatLng(25.774252, -80.190262),
                 ];
 
-                //Crear Polígono
+                //Crear PolÃ­gono
                 bermudaTriangle = new google.maps.Polygon({
                     paths: triangleCoords,
                     strokeColor: "#FF0000",
@@ -166,7 +158,7 @@
                     <img src="img/slide1.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block" style="margin-bottom: 300px;">
                         <h3><strong><%=info.getNombre()%></strong></h3>
-                        <p>Comodidad, atenci�n y diversi�n al alcance de todos.</p>
+                        <p>Comodidad, atención y diversión al alcance de todos.</p>
                     </div>
                 </div>
                 <!--  <div class="carousel-item">
@@ -211,7 +203,7 @@
             <div class="container px-5">
                 <div class="row gx-5 align-items-center">
                     <div class="col-lg-6 order-lg-2">
-                        <div class="p-5"><img class="img-fluid rounded-circle" src="img/01.jpg" alt="..." /></div>
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="https://media.revistagq.com/photos/5ca5f072501e5472ac7c591d/master/pass/hotel_lujo_2934.jpg" alt="..." /></div>
                     </div>
                     <div class="col-lg-6 order-lg-1">
                         <div class="p-5">
@@ -227,7 +219,7 @@
             <div class="container px-5">
                 <div class="row gx-5 align-items-center">
                     <div class="col-lg-6">
-                        <div class="p-5"><img class="img-fluid rounded-circle" src="img/02.jpg" alt="..." /></div>
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="https://img.culturacolectiva.com/content/2016/07/hoteles-lujosos-grand-velas.jpg" alt="..." /></div>
                     </div>
                     <div class="col-lg-6">
                         <div class="p-5">
@@ -243,7 +235,7 @@
             <div class="container px-5">
                 <div class="row gx-5 align-items-center">
                     <div class="col-lg-6 order-lg-2">
-                        <div class="p-5"><img class="img-fluid rounded-circle" src="img/03.jpg" alt="..." /></div>
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="https://www.hotelesconjacuzzi.es/img4/hoteles-rurales-con-jacuzzi-privado-en-habitacion.jpg" alt="..." /></div>
                     </div>
                     <div class="col-lg-6 order-lg-1">
                         <div class="p-5">
@@ -289,5 +281,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <script src="js/encriptar/md5.js" type="text/javascript"></script>
     </body>
 </html>
